@@ -1,8 +1,9 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Event from './components/Event.vue'
+import Home from './components/Home.vue'
 import NotFound from './components/NotFound.vue'
 import Preview from './components/Preview.vue'
-import Event from './components/Event.vue'
+import Router from 'vue-router'
 
 Vue.use(Router)
 
@@ -11,26 +12,31 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: { name: 'preview' }
+      redirect: {name: 'home'},
     },
     {
       path: '/not-found',
       name: 'not-found',
-      component: NotFound
+      component: NotFound,
     },
     {
       path: '/preview',
       name: 'preview',
-      component: Preview
+      component: Preview,
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home,
     },
     {
       path: '/event/:uid',
       name: 'event',
-      component: Event
+      component: Event,
     },
     {
       path: '*',
-      redirect: { name: 'not-found' }
+      redirect: {name: 'not-found'},
     }
   ]
 })

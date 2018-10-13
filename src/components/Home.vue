@@ -10,8 +10,21 @@
       prismic-rich-text(:field='plan.description')
       button
         prismic-rich-text(:field='plan.price_text')
+      ul
+        li(v-for='advantageItem in plan.advantages')
+          | {{$prismic.richTextAsPlain(advantageItem.advantage)}}
   h2 {{$prismic.richTextAsPlain(home.rooms_title)}}
   prismic-rich-text(:field='home.rooms_summary')
+  .rooms
+    .room(v-for='room in rooms')
+      img(:src='room.main_image.url' height='100' width='100')
+      h3 {{$prismic.richTextAsPlain(room.name)}}
+      prismic-rich-text(:field='room.summary')
+      button
+        prismic-rich-text(:field='room.price_summary')
+      ul
+        li(v-for='advantageItem in room.advantages')
+          | {{$prismic.richTextAsPlain(advantageItem.advantage)}}
   h2 {{$prismic.richTextAsPlain(home.about_title)}}
   prismic-rich-text(:field='home.about_summary')
 </template>
@@ -25,6 +38,7 @@ export default {
     return {
       home: {},
       plans: [],
+      rooms: [],
     }
   },
   methods: {
@@ -37,10 +51,14 @@ export default {
         this.$prismic.client.query(
           Prismic.Predicates.at('document.type', 'plan')
         ),
-      ]).then(([homeDoc, planDocs]) => {
+        this.$prismic.client.query(
+          Prismic.Predicates.at('document.type', 'room')
+        ),
+      ]).then(([homeDoc, planDocs, roomDocs]) => {
         if (!homeDoc || !planDocs) { return this.panic() }
         this.home = homeDoc.data
         this.plans = planDocs.results.map((d) => d.data)
+        this.rooms = roomDocs.results.map((d) => d.data)
       })
     }
   },

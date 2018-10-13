@@ -1,10 +1,11 @@
 {
-  "name": "prismic-vuejs-starter",
-  "version": "1.2.0",
-  "description": "Vue.js starter project with content managed in Prismic",
-  "license": "Apache-2.0",
-  "repository": "github:prismicio/vuejs-starter",
-  "author": "Prismic",
+  "name": "kleinhafen.ch",
+  "version": "0.1.0",
+  "description": "",
+  "license": "All rights reserved.",
+  "repository": "github:kleinhafen/kleinhafen.ch",
+  "author": "",
+  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"

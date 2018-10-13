@@ -2,6 +2,7 @@
 .home
   h1 {{$prismic.richTextAsPlain(home.page_title)}}
   p {{$prismic.richTextAsPlain(home.page_summary)}}
+  h2 {{$prismic.richTextAsPlain(home.plans_title)}}
   h2 {{$prismic.richTextAsPlain(home.rooms_title)}}
   p {{$prismic.richTextAsPlain(home.rooms_summary)}}
   h2 {{$prismic.richTextAsPlain(home.about_title)}}
@@ -9,7 +10,7 @@
 </template>
 
 <script>
-const Prismic = require('prismic-javascript')
+import Prismic from 'prismic-javascript'
 
 export default {
   name: 'Home',
@@ -18,6 +19,7 @@ export default {
       home: {
         page_title: null,
         page_summary: null,
+        plans_title: null,
         rooms_title: null,
         rooms_summary: null,
         about_title: null,
